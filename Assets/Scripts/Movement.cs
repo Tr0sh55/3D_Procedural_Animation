@@ -82,19 +82,16 @@ public class SpiderMovementController : MonoBehaviour
             {
                 if (isCurrentLegMovingSet)
                 {
-                    // Check if the leg is further than maxDist from its target position
-                    if (Vector3.Distance(legPoints[i].position, nextStepPositions[i]) > maxDist){
-                        float progress = (Time.time - stepStartTime[i]) / stepDuration;
-                        if (progress < 1.0f)
-                        {
-                            // Calculate vertical lifting for stepping effect
-                            Vector3 stepPositionWithHeight = nextStepPositions[i] + Vector3.up * (stepHeight * Mathf.Sin(progress * Mathf.PI));
-                            legPoints[i].position = Vector3.Lerp(legPoints[i].position, stepPositionWithHeight, progress);
-                        }
-                        else
-                        {
-                            stepStartTime[i] = Time.time; // Reset for the next step
-                        }
+                    float progress = (Time.time - stepStartTime[i]) / stepDuration;
+                    if (progress < 1.0f)
+                    {
+                        // Calculate vertical lifting for stepping effect
+                        Vector3 stepPositionWithHeight = nextStepPositions[i] + Vector3.up * (stepHeight * Mathf.Sin(progress * Mathf.PI));
+                        legPoints[i].position = Vector3.Lerp(legPoints[i].position, stepPositionWithHeight, progress);
+                    }
+                    else
+                    { 
+                        stepStartTime[i] = Time.time; // Reset for the next step
                     }
                 }
             }
