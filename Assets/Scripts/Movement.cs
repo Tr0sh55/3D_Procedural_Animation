@@ -39,11 +39,11 @@ public class SpiderMovementController : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A))
         {
             movement += transform.forward;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))
         {
             movement -= transform.forward;
         }
