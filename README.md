@@ -29,3 +29,7 @@ Legs are grouped into two sets, moving in diagonal pairs to simulate a natural s
 1. A full body with legs can be found in /Assets/Prefabs.
 2. Add the Target Spheres (also found in /Assets/Prefabs to the ground at the bottom of the legs and add them to the array of the "IK.cs" Script on the last bone of each Leg, in the inspector.
 3. Use WASD to Move
+
+## Picture of Spider on a sphere
+![Spider_screenshot](https://github.com/Tr0sh55/3D_Procedural_Animation/assets/47827386/7a1d6589-d3aa-435e-b049-43af21ff7980)
+
