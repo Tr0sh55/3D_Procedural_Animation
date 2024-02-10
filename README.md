@@ -1,7 +1,7 @@
 # 3D Procedural Animation Spider Project
 
 ## Overview
-This Unity project showcases a procedural animation technique for a spider model, enabling it to navigate through diverse terrains dynamically. The spider's legs adjust in real-time to the ground beneath them, providing a realistic and organic movement pattern. This approach combines Unity's physics with custom scripting to simulate natural leg movements and body adjustments as the spider moves.
+This are the code and Assets for the procedural animation technique for a spider model. The spider's legs adjust in real-time to the ground beneath them, which lets the movement adjust to uneven terrain.
 
 ## Key Features
 
