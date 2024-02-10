@@ -4,8 +4,8 @@ using UnityEngine;
 public class SpiderMovementController : MonoBehaviour
 {
     public Transform[] legPoints;
-    [SerializeField] private float maxDist = 0.5f;
-    [SerializeField] public float speed = 5.0f;
+    [SerializeField] private float maxDist = 1.15f;
+    [SerializeField] public float speed = 2.0f;
     [SerializeField] public float stepDuration = 0.5f;
     [SerializeField] private float stepHeight = 0.2f;
 
