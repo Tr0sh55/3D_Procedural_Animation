@@ -13,16 +13,16 @@ This are the code and Assets for the procedural animation technique for a spider
 ## Implementation Details
 
 ### Inverse Kinematics (IK)
-The project leverages Unity's IK system to calculate the position and orientation of each leg endpoint (or "foot"). This system ensures that regardless of the body's position and orientation, each leg can reach its intended target position on the ground, adapting to changes in terrain elevation and slope.
+Calculates the Position of each bone depending on the Target position.
 
 ### Raycasting for Terrain Adaptation
-To determine where each leg should step next, the system casts a ray downward from the expected next step position. The point where this ray intersects with the terrain dictates the next target position for the leg, ensuring that the spider can walk over uneven surfaces and obstacles.
+To determine where each leg should step next, the system casts a ray downward from the expected next step position. The point where this ray intersects with the terrain dictates the next target position for the leg.
 
 ### Body Position and Rotation Adjustment
-The spider's body position and orientation are dynamically adjusted based on the average position of all leg endpoints. This adjustment ensures that the body remains appropriately aligned with the ground, moving smoothly as the spider navigates through its environment.
+The spider's body position and orientation are dynamically adjusted based on the average position of all leg endpoints.
 
 ### Diagonal Leg Movement Coordination
-Legs are grouped into two sets, moving in diagonal pairs to simulate a natural spider gait. This coordination is managed through a combination of timers and checks on the distance between each leg's current position and its next target position.
+Legs are grouped into two sets, moving in diagonal pairs.
 
 ## How to Use
 
