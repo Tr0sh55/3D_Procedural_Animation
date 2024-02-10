@@ -135,7 +135,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  maxDist: 1.15
+  maxDist: 0.3
   speed: 2
   stepDuration: 0.5
   stepHeight: 0.2

@@ -4,7 +4,7 @@ using UnityEngine;
 public class SpiderMovementController : MonoBehaviour
 {
     public Transform[] legPoints;
-    [SerializeField] private float maxDist = 1.15f;
+    [SerializeField] private float maxDist = 0.3f;
     [SerializeField] public float speed = 2.0f;
     [SerializeField] public float stepDuration = 0.5f;
     [SerializeField] private float stepHeight = 0.2f;
@@ -26,11 +26,32 @@ public class SpiderMovementController : MonoBehaviour
     }
 
     void Update()
-    {
-        float moveHorizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        float moveVertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        Vector3 movement = new Vector3(moveVertical, 0.0f, moveHorizontal);
-        transform.Translate(movement, Space.World);
+    { 
+        Vector3 movement = Vector3.zero;
+        
+        if (Input.GetKey(KeyCode.W))
+        {
+            movement += transform.right;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            movement -= transform.right;
+        }
+
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            movement += transform.forward;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            movement -= transform.forward;
+        }
+        
+        movement = movement.normalized * (speed * Time.deltaTime);
+
+
+        transform.Translate(movement);
 
         MoveLegs(movement);
     }
@@ -62,15 +83,19 @@ public class SpiderMovementController : MonoBehaviour
             {
                 if (isCurrentLegMovingSet)
                 {
-                    float progress = (Time.time - stepStartTime[i]) / stepDuration;
-                    if (progress < 1.0f)
-                    {
-                        Vector3 stepPositionWithHeight = nextStepPositions[i] + Vector3.up * (stepHeight * Mathf.Sin(progress * Mathf.PI)); // Add height for stepping effect
-                        legPoints[i].position = Vector3.Lerp(legPoints[i].position, stepPositionWithHeight, progress);
-                    }
-                    else
-                    {
-                        stepStartTime[i] = Time.time;
+                    // Check if the leg is further than maxDist from its target position
+                    if (Vector3.Distance(legPoints[i].position, nextStepPositions[i]) > maxDist){
+                        float progress = (Time.time - stepStartTime[i]) / stepDuration;
+                        if (progress < 1.0f)
+                        {
+                            // Calculate vertical lifting for stepping effect
+                            Vector3 stepPositionWithHeight = nextStepPositions[i] + Vector3.up * (stepHeight * Mathf.Sin(progress * Mathf.PI));
+                            legPoints[i].position = Vector3.Lerp(legPoints[i].position, stepPositionWithHeight, progress);
+                        }
+                        else
+                        {
+                            stepStartTime[i] = Time.time; // Reset for the next step
+                        }
                     }
                 }
             }
@@ -82,18 +107,37 @@ public class SpiderMovementController : MonoBehaviour
     void AdjustBodyPositionAndRotation()
     {
         Vector3 averageLegPosition = Vector3.zero;
+        Vector3 averageUp = Vector3.zero;
+
         for (int i = 0; i < legPoints.Length; i++)
         {
             averageLegPosition += legPoints[i].position;
+            
+            // Calculate the average 'up' direction based on the normal of the ground below each leg
+            Vector3 raycastStartPosition = legPoints[i].position + (Vector3.up * 0.5f);
+            RaycastHit hit;
+            if (Physics.Raycast(raycastStartPosition, Vector3.down, out hit, Mathf.Infinity))
+            {
+                // Debug.DrawRay(raycastStartPosition, Vector3.down * hit.distance, Color.red);
+                averageUp += hit.normal;
+            }
+            else
+            {
+                // Debug.DrawRay(raycastStartPosition, Vector3.down * 1000, Color.red);
+                averageUp += Vector3.up; // Fallback to world up if no hit
+            }
         }
+        // Calculate the average position of the legs
         averageLegPosition /= legPoints.Length;
+        averageUp /= legPoints.Length;
 
-        // Adjust the body's height based on the average position of the legs plus an offset for visual consistency
+        // Adjust the body's height based on the average position of the legs plus an offset
         float newHeight = averageLegPosition.y + someMinimumHeightAboveGround;
         transform.position = new Vector3(transform.position.x, newHeight, transform.position.z);
 
-        // Optionally, adjust the body's rotation based on the terrain's slope or leg positions
-        // This part is more complex and might require additional logic to smoothly handle rotations
+        // adjust the body's rotation based on the averaged 'up' direction
+        Quaternion targetRotation = Quaternion.FromToRotation(transform.up, averageUp) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5.0f);
     }
     
     void CheckAndSwitchMovingSets()
