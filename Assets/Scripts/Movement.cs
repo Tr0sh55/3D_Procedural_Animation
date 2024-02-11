@@ -12,6 +12,8 @@ public class SpiderMovementController : MonoBehaviour
     private float[] stepStartTime;
     private bool isMovingSetA = true;
     private float someMinimumHeightAboveGround = 2.5f;
+    [SerializeField] private float RayCastSize = 2.9f;
+    
 
     void Start()
     {
@@ -64,7 +66,7 @@ public class SpiderMovementController : MonoBehaviour
         {
             nextStepPositions[i] += movement;
 
-            Vector3 raycastStartPosition = nextStepPositions[i] + (Vector3.up * 0.5f);
+            Vector3 raycastStartPosition = nextStepPositions[i] + (Vector3.up * RayCastSize);
             RaycastHit hit;
             if (Physics.Raycast(raycastStartPosition, Vector3.down, out hit, Mathf.Infinity))
             {
