@@ -26,13 +26,13 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         mainMenuCanvas.enabled = false;
+        player.GetComponent<SpiderMovementController>().enabled = true;
+        
         ExtractScriptableRendererData();
         foreach (var renderObjSetting in _scriptableRendererData.rendererFeatures.OfType<PixelizeFeature>())
         {
-            renderObjSetting.settings.screenHeight = 500;
+            renderObjSetting.settings.screenHeight = 600;
         }
-        
-        
     }
     
     void Update()
