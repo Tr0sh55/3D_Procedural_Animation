@@ -7,6 +7,7 @@ public class SpiderMovementController : MonoBehaviour
     [SerializeField] public float speed = 2.0f;
     [SerializeField] public float stepDuration = 0.5f;
     [SerializeField] private float stepHeight = 0.2f;
+    [SerializeField] private LayerMask raycastLayerMask;
 
     private Vector3[] nextStepPositions;
     private float[] stepStartTime;
@@ -68,7 +69,7 @@ public class SpiderMovementController : MonoBehaviour
 
             Vector3 raycastStartPosition = nextStepPositions[i] + (Vector3.up * RayCastSize);
             RaycastHit hit;
-            if (Physics.Raycast(raycastStartPosition, Vector3.down, out hit, Mathf.Infinity))
+            if (Physics.Raycast(raycastStartPosition, Vector3.down, out hit, Mathf.Infinity, raycastLayerMask))
             {
                 Debug.DrawRay(raycastStartPosition, Vector3.down * hit.distance, Color.red);
                 nextStepPositions[i] = hit.point;
