@@ -31,6 +31,8 @@ public class MainMenuManager : MonoBehaviour
         {
             renderObjSetting.settings.screenHeight = 500;
         }
+        
+        
     }
     
     void Update()
