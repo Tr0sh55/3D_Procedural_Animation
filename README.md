@@ -30,12 +30,12 @@ Legs are grouped into two sets, moving in diagonal pairs.
 2. Add the Target Spheres (also found in /Assets/Prefabs to the ground at the bottom of the legs and add them to the array of the "IK.cs" Script on the last bone of each Leg, in the inspector.
 3. Use WASD to Move
 
-## Picture of Spider on a sphere
-![Spider_screenshot](https://github.com/Tr0sh55/3D_Procedural_Animation/assets/47827386/7a1d6589-d3aa-435e-b049-43af21ff7980)
-
-
 ## Unity Build
-I uploaded a build of the project as: 
+I uploaded builds of the project as: 
 - "Procedural_Animation_v0.2.7z" (2024-02-11)
 - "Procedural_Animation_v0.3.7z" (2024-02-11)
+
+## Pictures of Spider on a sphere
+![Spider_screenshot](https://github.com/Tr0sh55/3D_Procedural_Animation/assets/47827386/7a1d6589-d3aa-435e-b049-43af21ff7980)
+![spider_on_sphere](https://github.com/Tr0sh55/3D_Procedural_Animation/assets/47827386/816b4094-2b8b-4238-a501-38c51e75b12c)
 
