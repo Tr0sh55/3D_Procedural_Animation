@@ -12,7 +12,7 @@ public class SpiderMovementController : MonoBehaviour
     private float[] stepStartTime;
     private bool isMovingSetA = true;
     private float someMinimumHeightAboveGround = 2.5f;
-    [SerializeField] private float RayCastSize = 2.9f;
+    [SerializeField] private float RayCastSize = 2.1f;
     
 
     void Start()

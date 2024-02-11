@@ -139,7 +139,7 @@ MonoBehaviour:
   speed: 2
   stepDuration: 0.5
   stepHeight: 0.2
-  RayCastSize: 2.9
+  RayCastSize: 2.1
 --- !u!1 &3476738927580893940
 GameObject:
   m_ObjectHideFlags: 0
