@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SpiderMovementController : MonoBehaviour
 {
@@ -51,8 +52,7 @@ public class SpiderMovementController : MonoBehaviour
         }
         
         movement = movement.normalized * (speed * Time.deltaTime);
-
-
+        
         transform.Translate(movement);
 
         MoveLegs(movement);
