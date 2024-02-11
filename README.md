@@ -35,4 +35,7 @@ Legs are grouped into two sets, moving in diagonal pairs.
 
 
 ## Unity Build
-I uploaded a build of the project as "Procedural_Animation_v0.2.7z" (2024-02-11)
+I uploaded a build of the project as: 
+- "Procedural_Animation_v0.2.7z" (2024-02-11)
+- "Procedural_Animation_v0.3.7z" (2024-02-11)
+
