@@ -33,3 +33,6 @@ Legs are grouped into two sets, moving in diagonal pairs.
 ## Picture of Spider on a sphere
 ![Spider_screenshot](https://github.com/Tr0sh55/3D_Procedural_Animation/assets/47827386/7a1d6589-d3aa-435e-b049-43af21ff7980)
 
+
+## Unity Build
+I uploaded a build of the project as "Procedural_Animation_v0.2.7z" (2024-02-11)
