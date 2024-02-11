@@ -61,18 +61,21 @@ public class SpiderMovementController : MonoBehaviour
     void MoveLegs(Vector3 movement)
     {
         CheckAndSwitchMovingSets();
-    
-        // Update the next step position with the body movement
+        
         for (int i = 0; i < legPoints.Length; i++)
         {
-            nextStepPositions[i] += movement;
-
+            nextStepPositions[i] += transform.TransformDirection(movement);
+            
             Vector3 raycastStartPosition = nextStepPositions[i] + (Vector3.up * RayCastSize);
             RaycastHit hit;
             if (Physics.Raycast(raycastStartPosition, Vector3.down, out hit, Mathf.Infinity, raycastLayerMask))
             {
                 Debug.DrawRay(raycastStartPosition, Vector3.down * hit.distance, Color.red);
                 nextStepPositions[i] = hit.point;
+            }
+            else
+            {
+                nextStepPositions[i] = raycastStartPosition + (Vector3.down * RayCastSize);
             }
         }
 
